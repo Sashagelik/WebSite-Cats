@@ -16,27 +16,26 @@ class Api {
     return fetch(`${this.url}${this.name}/add`, {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
   }
   updCat(id, body) {
     return fetch(`${this.url}${this.name}/update/${id}`, {
       method: "PUT",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
   }
   delCat(id) {
     return fetch(`${this.url}${this.name}/delete/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
     });
   }
-};
-
+}
 
