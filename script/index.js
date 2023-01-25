@@ -11,7 +11,7 @@ const updCards = (data)=> {
     if (cat.id) {
       let card = `<div class="${
         cat.favourite ? "card like" : "card"
-      }" style="background-image:
+      }" id=${cat.id} style="background-image:
   url(${cat.img_link || "Demo-cat-Img.png"})">
   <span>${cat.name}</span>
   </div>`;
@@ -123,6 +123,38 @@ form.img_link.addEventListener("input", (event) =>{
    });
  });
      
+//--------------------------------------------------------------//
+
+
+let card = document.getElementsByClassName("card");
+let infoCats = document.querySelector("#infoCats");
+
+
+for (let i = 0; i < card.length; i++) {
+  card[i].addEventListener("click", async () => {
+    let res = await api.getCat(card[i].id);
+    let cont = await res.json();
+    console.log(cont);
+    if (infoCats.classList!==('infoClose')){
+      infoCats.classList.toggle('infoClose')
+    } 
+    let name = infoCats.querySelector("#name")
+    let age = infoCats.querySelector("#age")
+    let info = infoCats.querySelector("#info")
+    let rate = infoCats.querySelector("#rate")
+
+    for (let key in cont){
+      name.value = cont[key].name
+      age.value = cont[key].age
+      info.value = cont[key].description
+      rate.value = cont[key].rate
+    }
+
+  })
+}
+
+
+
 
 
 

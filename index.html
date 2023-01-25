@@ -17,8 +17,20 @@
     <a class="btn" href="" id="add"><i class="fa-solid fa-plus"></i></a>
   </header>
   <main>
+  
 
   </main>
+  <div class="infoOpen " id="infoCats">
+    <h3>Информация о любимце</h3>
+    <span>Кличка</span>
+    <input type="text" id="name">
+    <span>Возраст</span>
+    <input type="number" id="age" min="0">
+    <span>Дополнительная информация о котике</span>
+    <textarea id="info" resize="none" ></textarea>
+    <span>Рейтинг</span>
+    <input type="number" id="rate">
+  </div>
   <footer>
     <span>©2023 Made by Gilyashov_Aleksandr</span>
     <nav>
@@ -31,7 +43,7 @@
     <div class="popup" id="popup-form">
       <div class="popup-close btn"><i class="fa-solid fa-xmark"></i></div>
       <h2>Добавить питомца</h2>
-      <form action="">
+      <form>
         <div class="form-img"></div>
         <input type="number" name="id" min="1" required placeholder="id">
         <input type="number" name="age" placeholder="Возраст" min="0">
