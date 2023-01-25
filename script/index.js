@@ -1,7 +1,7 @@
 
 const main = document.querySelector("main");
 
-let api = new Api("gelik_alex");
+let api = new Api ("gelik_alex");
 
 // Заполняем карточки //
 
@@ -123,7 +123,4 @@ form.img_link.addEventListener("input", (event) =>{
    });
  });
      
-
-
-
 
