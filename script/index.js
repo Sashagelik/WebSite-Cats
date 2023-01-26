@@ -13,7 +13,7 @@ const updCards = (data)=> {
         cat.favourite ? "card like" : "card"
       }" id=${cat.id} style="background-image:
   url(${cat.img_link || "Demo-cat-Img.png"})">
-  <span>${cat.name}</span>
+  <span></span>
   </div>`;
       main.innerHTML += card;
      }
@@ -125,6 +125,8 @@ form.img_link.addEventListener("input", (event) =>{
      
 //--------------------------------------------------------------//
 
+/*Добавляет карточку информации о каждом котике*/
+
 
 let card = document.getElementsByClassName("card");
 let infoCats = document.querySelector("#infoCats");
@@ -134,10 +136,12 @@ for (let i = 0; i < card.length; i++) {
   card[i].addEventListener("click", async () => {
     let res = await api.getCat(card[i].id);
     let cont = await res.json();
-    console.log(cont);
-    if (infoCats.classList!==('infoClose')){
-      infoCats.classList.toggle('infoClose')
-    } 
+    if (infoCats.classList!=='infoClose'){
+      infoCats.classList.add('infoClose')
+    }
+  card[i].addEventListener("mouseout", () => {
+    infoCats.classList.remove('infoClose')
+})
     let name = infoCats.querySelector("#name")
     let age = infoCats.querySelector("#age")
     let info = infoCats.querySelector("#info")
@@ -149,13 +153,42 @@ for (let i = 0; i < card.length; i++) {
       info.value = cont[key].description
       rate.value = cont[key].rate
     }
-
   })
-}
+};
 
 
+//--------------------------------------------------------------//
 
+/*Реализация меню формы регистрации на сайте*/
 
+let btnEnter = document.querySelector("#btnEnter");
 
+let formRegistr = document.querySelector(".formRegistr");
+
+let formRegistrcloseBtn = document.querySelector(".formRegistrcloseBtn");
+
+btnEnter.addEventListener("click", () => {
+  if (formRegistr.classList !== "activeForm") {
+    formRegistr.classList.add("activeForm");
+    formRegistr.parentNode.classList.add("activeForm");
+  }
+});
+
+formRegistrcloseBtn.addEventListener("click", () => {
+  formRegistr.classList.remove("activeForm");
+  formRegistr.parentNode.classList.remove("activeForm");
+});
+
+let btnEnterCab = document.querySelector(".btnEnterCab");
+console.log(btnEnterCab);
+
+btnEnterCab.addEventListener("click", (event) => {
+  event.preventDefault();
+  let login = document.querySelector('[name="login"]');
+  document.cookie = `Login=${login.value}`;
+
+  let password = document.querySelector('[name="password"]');
+  document.cookie = `Password=${password.value}`;
+});
 
 

@@ -32,6 +32,27 @@
    box-shadow: 0 0 2px 0 #0002;
  }
 
+ #btnEnter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(135, 135, 135);
+  padding: 7px 15px;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  border-radius: 10px;
+  font-weight: 500;
+  text-align: center;
+ }
+
+ #btnEnter:hover {
+  color: #000;
+ }
+
+ #btnEnter span{
+  padding-left:5px ;
+ }
+
  main {
    padding: 20px;
    display: grid;
@@ -93,14 +114,14 @@
  }
 
  .like::after {
-   content: "\2665";
-   font-size: 2.5rem;
+   content: "\2661";
+   font-size: 2.0rem;
    line-height: 1;
    position: absolute;
    z-index: 3;
-   color: #f00;
-   top: 10px;
-   right: 10px;
+   color: rgb(255, 0, 0);
+   top: 7px;
+   right: 7px;
  }
 
  /*Выпадающее меню для добавления котика*/
@@ -111,7 +132,7 @@
    left: 0;
    bottom: 0;
    right: 0;
-   justify-content: center;
+   justify-content:center;
    align-items: center;
    background-color: #0006;
    z-index: 10;
@@ -236,6 +257,7 @@
   text-align: center;
   box-shadow: -1px 1px 42px 30px rgba(229, 178, 255, 0.2);
   background-color: rgb(236, 230, 250);
+  border-radius: 5px;
 }
 
 .infoOpen * {
@@ -246,8 +268,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 20;
-  
+  z-index: 20; 
 }
 
  @media (min-width: 768px) {
@@ -259,6 +280,70 @@
      grid-template-columns: repeat(3, 1fr);
    }
  }
+
+ /*Форма авторизации*/
+
+.formRegistr-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  z-index: 10;
+  display: none;
+}
+
+.formRegistr-wrapper.activeForm {
+  display: grid;
+}
+
+
+.formRegistr {
+  width: calc(100% - 20px);
+  max-height: calc(100% - 20px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(236, 230, 250);
+  box-shadow: 0 0 2px 0 #0004;
+  position: relative;
+  display: none;
+}
+
+.formRegistr.activeForm {
+  display: grid;
+}
+
+.formRegistr h2 {
+  text-align: center;
+}
+
+.formRegistr form {
+  display: grid;
+  
+}
+
+
+.btnEnterCab {
+  display: block;
+}
+
+.btnEnterCab:hover{
+  background-color: #e5b2ff;
+}
+
+.formRegistrcloseBtn {
+  width: auto;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
 
  /*Адаптив для телефонов и планшетов*/
 
