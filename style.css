@@ -26,7 +26,7 @@
  footer {
    height: 30px;
    display: flex;
-   justify-content: space-between;
+   justify-content:space-between;
    align-items: center;
    padding: 20px;
    box-shadow: 0 0 2px 0 #0002;
@@ -92,7 +92,7 @@
    overflow: hidden;
  }
 
- .card>* {
+ .card * {
    position: relative;
    z-index: 2;
  }
@@ -104,7 +104,7 @@
    left: 0;
    right: 0;
    bottom: 0;
-   background-color: #fff8;
+   background-color: rgba(194, 159, 159, 0.377);
    backdrop-filter: blur(1px);
    transition: backdrop-filter .3s linear;
  }
@@ -123,6 +123,17 @@
    top: 7px;
    right: 7px;
  }
+
+ #closeCard  {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+  color: rgba(255, 255, 255, 0.585);
+  border-radius: 15px;
+  border: none;
+  font-size: 20px;
+ }
+ 
 
  /*Выпадающее меню для добавления котика*/
 

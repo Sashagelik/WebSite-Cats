@@ -13,7 +13,7 @@ const updCards = (data)=> {
         cat.favourite ? "card like" : "card"
       }" id=${cat.id} style="background-image:
   url(${cat.img_link || "Demo-cat-Img.png"})">
-  <span></span>
+  <span id="closeCard"><i class="fa-solid fa-xmark"></i></span>
   </div>`;
       main.innerHTML += card;
      }
@@ -133,7 +133,7 @@ let infoCats = document.querySelector("#infoCats");
 
 
 for (let i = 0; i < card.length; i++) {
-  card[i].addEventListener("click", async () => {
+  card[i].addEventListener("mouseover", async () => {
     let res = await api.getCat(card[i].id);
     let cont = await res.json();
     if (infoCats.classList!=='infoClose'){
@@ -180,7 +180,7 @@ formRegistrcloseBtn.addEventListener("click", () => {
 });
 
 let btnEnterCab = document.querySelector(".btnEnterCab");
-console.log(btnEnterCab);
+
 
 btnEnterCab.addEventListener("click", (event) => {
   event.preventDefault();
@@ -191,4 +191,14 @@ btnEnterCab.addEventListener("click", (event) => {
   document.cookie = `Password=${password.value}`;
 });
 
+//--------------------------------------------------------------//
 
+/*Реализация удаления карточки с экрана и с сервера*/
+
+let closeCard = document.querySelectorAll("#closeCard");
+
+for (let el of closeCard) {
+  el.addEventListener("click", () => {
+    el.parentElement.remove()
+  })
+}
