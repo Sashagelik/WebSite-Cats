@@ -7,13 +7,13 @@ let api = new Api("gelik_alex");
 
 const updCards = (data)=> {
   main.innerHTML = "";
-  data.forEach((cat)=> {
+  data.forEach((cat) => {
     if (cat.id) {
       let card = `<div class="${
         cat.favourite ? "card like" : "card"
       }" id=${cat.id} style="background-image:
   url(${cat.img_link || "Demo-cat-Img.png"})">
-  <span id="closeCard"><i class="fa-solid fa-xmark"></i></span>
+  <span id="delCard"><i class="fa-solid fa-xmark"></i></span>
   </div>`;
       main.innerHTML += card;
      }
@@ -195,10 +195,21 @@ btnEnterCab.addEventListener("click", (event) => {
 
 /*Реализация удаления карточки с экрана и с сервера*/
 
-let closeCard = document.querySelectorAll("#closeCard");
+let delCard = document.querySelectorAll("#delCard");
 
-for (let el of closeCard) {
-  el.addEventListener("click", () => {
-    el.parentElement.remove()
-  })
+for (let el of delCard) {
+  el.addEventListener("click", async () => {
+    let responce = await api.delCat(el.parentNode.id);
+    let result = await responce.json();
+    el.parentNode.remove();
+  });
 }
+
+
+
+ 
+
+
+
+
+
