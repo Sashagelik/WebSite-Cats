@@ -7,13 +7,13 @@ let api = new Api ("gelik_alex");
 
 const updCards = (data)=> {
   main.innerHTML = "";
-  data.forEach((cat)=> {
+  data.forEach((cat) => {
     if (cat.id) {
       let card = `<div class="${
         cat.favourite ? "card like" : "card"
-      }" style="background-image:
+      }" id=${cat.id} style="background-image:
   url(${cat.img_link || "Demo-cat-Img.png"})">
-  <span>${cat.name}</span>
+  <span id="delCard"><i class="fa-solid fa-xmark"></i></span>
   </div>`;
       main.innerHTML += card;
      }
@@ -123,4 +123,99 @@ form.img_link.addEventListener("input", (event) =>{
    });
  });
      
+//--------------------------------------------------------------//
+
+/*Добавляет карточку информации о каждом котике*/
+
+
+let card = document.getElementsByClassName("card");
+let infoCats = document.querySelector("#infoCats");
+
+
+for (let i = 0; i < card.length; i++) {
+  card[i].addEventListener("click", async () => {
+    let res = await api.getCat(card[i].id);
+    let cont = await res.json();
+    if (infoCats.classList!=='infoClose'){
+      infoCats.classList.add('infoClose')
+    }
+  card[i].addEventListener("mouseout", () => {
+    infoCats.classList.remove('infoClose')
+})
+    let name = infoCats.querySelector("#name")
+    let age = infoCats.querySelector("#age")
+    let info = infoCats.querySelector("#info")
+    let rate = infoCats.querySelector("#rate")
+
+    for (let key in cont){
+      name.value = cont[key].name
+      age.value = cont[key].age
+      info.value = cont[key].description
+      rate.value = cont[key].rate
+    }
+  })
+};
+
+
+//--------------------------------------------------------------//
+
+/*Реализация меню формы регистрации на сайте*/
+
+let btnEnter = document.querySelector("#btnEnter");
+
+let formRegistr = document.querySelector(".formRegistr");
+
+let formRegistrcloseBtn = document.querySelector(".formRegistrcloseBtn");
+
+btnEnter.addEventListener("click", () => {
+  if (formRegistr.classList !== "activeForm") {
+    formRegistr.classList.add("activeForm");
+    formRegistr.parentNode.classList.add("activeForm");
+  }
+});
+
+formRegistrcloseBtn.addEventListener("click", () => {
+  formRegistr.classList.remove("activeForm");
+  formRegistr.parentNode.classList.remove("activeForm");
+});
+
+let btnEnterCab = document.querySelector(".btnEnterCab");
+
+
+btnEnterCab.addEventListener("click", (event) => {
+  event.preventDefault();
+  let login = document.querySelector('[name="login"]');
+  document.cookie = `Login=${login.value}`;
+
+  let password = document.querySelector('[name="password"]');
+  document.cookie = `Password=${password.value}`;
+});
+
+//--------------------------------------------------------------//
+
+/*Реализация удаления карточки с экрана с сервера и с локального хранилища*/
+
+let delCard = document.querySelectorAll("#delCard");
+
+for (let i = 0; i < delCard.length; i++) {
+  delCard[i].addEventListener("click", async (event) => {
+    try {
+      event.stopPropagation();
+      let res = await api.delCat(delCard[i].parentNode.id);
+      let data = await res.json();
+      delCard[i].parentNode.remove();
+    } catch (err) {
+      return(err);
+    }
+
+    let find = catsData.findIndex((item) => item.id == card.id);
+    console.log(find);
+    catsData.splice(find, 1);
+    localStorage.setItem("cats", JSON.stringify(catsData));
+  });
+}
+ 
+
+
+
 

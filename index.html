@@ -7,7 +7,7 @@
   <title>Милые котики</title>
   <link rel="stylesheet" href="./style.css">
   <script src="https://kit.fontawesome.com/3e2b3d0dcf.js" crossorigin="anonymous"></script>
-  <script src="/script/cats.js" defer></script>
+  <!--<script src="/script/cats.js" defer></script>-->
   <script src="/script/api.js" defer></script>
 </head>
 
@@ -15,10 +15,23 @@
   <header>
     <a href="" class="logo"><i class="fa-solid fa-paw fa-2x"></i>Милые котики</a>
     <a class="btn" href="" id="add"><i class="fa-solid fa-plus"></i></a>
+   <a href="#" id="btnEnter"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
   </header>
   <main>
+  
 
   </main>
+  <div class="infoOpen " id="infoCats">
+    <h3>Информация о любимце</h3>
+    <span>Кличка</span>
+    <input type="text" id="name">
+    <span>Возраст</span>
+    <input type="number" id="age" min="0">
+    <span>Дополнительная информация о котике</span>
+    <textarea id="info" resize="none" ></textarea>
+    <span>Рейтинг</span>
+    <input type="number" id="rate">
+  </div>
   <footer>
     <span>©2023 Made by Gilyashov_Aleksandr</span>
     <nav>
@@ -31,7 +44,7 @@
     <div class="popup" id="popup-form">
       <div class="popup-close btn"><i class="fa-solid fa-xmark"></i></div>
       <h2>Добавить питомца</h2>
-      <form action="">
+      <form>
         <div class="form-img"></div>
         <input type="number" name="id" min="1" required placeholder="id">
         <input type="number" name="age" placeholder="Возраст" min="0">
@@ -44,7 +57,19 @@
       </form>
     </div>
   </div>
+  <div class="formRegistr-wrapper">
+    <div class="formRegistr" id="formRegistr-form">
+      <div class="formRegistrcloseBtn btn"><i class="fa-solid fa-xmark"></i></div>
+      <h2>Авторизация</h2>
+      <form>  
+        <input id="inpLogin" type="text" name="login" required placeholder="Логин">
+        <input id="inpPassword" type="password" name="password"required placeholder="Пароль">
+        <button class="btnEnterCab btn" type="submit">Постучаться и войти</button>
+      </form>
+    </div>
+  </div>
   <script src="/script/index.js" defer></script>
+  <script src="/script/script_req.js" defer></script>
 </body>
 
 </html>
