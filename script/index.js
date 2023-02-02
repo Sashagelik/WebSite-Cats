@@ -133,7 +133,7 @@ let infoCats = document.querySelector("#infoCats");
 
 
 for (let i = 0; i < card.length; i++) {
-  card[i].addEventListener("mouseover", async () => {
+  card[i].addEventListener("click", async () => {
     let res = await api.getCat(card[i].id);
     let cont = await res.json();
     if (infoCats.classList!=='infoClose'){
@@ -193,21 +193,30 @@ btnEnterCab.addEventListener("click", (event) => {
 
 //--------------------------------------------------------------//
 
-/*Реализация удаления карточки с экрана и с сервера*/
+/*Реализация удаления карточки с экрана с сервера и с локального хранилища*/
 
 let delCard = document.querySelectorAll("#delCard");
 
-for (let el of delCard) {
-  el.addEventListener("click", async () => {
-    let responce = await api.delCat(el.parentNode.id);
-    let result = await responce.json();
-    el.parentNode.remove();
+for (let i = 0; i < delCard.length; i++) {
+  delCard[i].addEventListener("click", async (event) => {
+    try {
+      event.stopPropagation();
+      let res = await api.delCat(delCard[i].parentNode.id);
+      let data = await res.json();
+      delCard[i].parentNode.remove();
+    } catch (err) {
+      return(err);
+    }
+
+    let find = catsData.findIndex((item) => item.id == card.id);
+    console.log(find);
+    catsData.splice(find, 1);
+    localStorage.setItem("cats", JSON.stringify(catsData));
   });
 }
-
-
-
  
+
+
 
 
 

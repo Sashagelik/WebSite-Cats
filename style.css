@@ -124,14 +124,15 @@
    right: 7px;
  }
 
- #delCard  {
-  position: absolute;
-  top: 10px;
-  left: 9px;
-  color: rgba(255, 255, 255, 0.585);
-  border-radius: 15px;
-  border: none;
-  font-size: 20px;
+ #delCard {
+   position: absolute;
+   top: 10px;
+   left: 9px;
+   color: rgba(255, 255, 255, 0.585);
+   border-radius: 15px;
+   border: none;
+   font-size: 20px;
+   cursor: pointer;
  }
  
 
